@@ -12,7 +12,7 @@ from handleData.horario import *
 from handleData.materias import *
 
 # Variables de uso comun
-data = {"pendientes":{},"horario":{}}
+data = {"pendientes":{},"horario":{{}}}
 materias = []
 
 # Parametros

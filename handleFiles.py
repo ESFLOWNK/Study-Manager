@@ -34,7 +34,7 @@ def leerDatos(filename: str) -> dict:
                 data[fatherScope][childScope].append(line)
     except FileNotFoundError:
         f.close()
-        return {"pendientes":{},"horario":{}}
+        return {"pendientes":{},"horario":{{}}}
 
     f.close()
     return data
