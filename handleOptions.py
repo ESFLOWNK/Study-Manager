@@ -23,7 +23,8 @@ def pedirOpcionStr(text: str = ">> ") -> str:
 
 
 def mostrarOpciones(opciones: list[str], header = True):
-    if header: print("Opciones:\n")
+    if header: 
+        print("Opciones:\n")
 
     for i in range(0,len(opciones)): # Hace que la variable i vaya desde cero hasta
                                      # el numero de elementos que tiene opciones, en bucle
