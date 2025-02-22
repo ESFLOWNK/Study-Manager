@@ -11,7 +11,7 @@ def pedirOpcion(desde: int,hasta: int) -> int:
     return int(op) # Devuelve la opcion a manera de int
 
 
-def pedirOpcionStr(text: str) -> str:
+def pedirOpcionStr(text: str = ">> ") -> str:
     op = "" # Crea una variable que contiene las opciones ingresadas
     while "|" in op or "." in op or "-" in op or op.strip() == "":
         # Revisa que op no tenga caracteres especiales
@@ -29,3 +29,16 @@ def mostrarOpciones(opciones: list[str], header = True):
         print(f"{i+1}. {opciones[i]}") # Se imprime i+1 y la opcion actual
     
     print("") # Hace un salto de linea
+
+def pedirVariasOpcionesStr(text:str = ">> ") -> list[str]:
+    ops = [] # Crea la lista de textos
+    op = "" # Crea una variable temporal para guardar texto
+
+    try: # Pide texto hasta que se presiona Ctrl + C
+        while True:
+            pedirOpcionStr(text)
+            ops.append(op)
+    except KeyboardInterrupt:
+        pass
+
+    return ops

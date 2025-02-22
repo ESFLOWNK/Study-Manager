@@ -28,18 +28,7 @@ def inicializar():
         print("¿Que materias son impartidas en tu institucion?")
         print("Presiona Ctrl+C cuando ya no quede ninguna")
 
-        mats = [] # Se crea una lista de materias
-
-        try:
-            # Se insertan materias hasta que se presione Ctrl+C
-            while True:
-                mat = pedirOpcionStr(">> ") # Se pide que se escriba el nombre de la materia
-                mats.append(mat.title()) # Se agregan materias a la lista
-        except KeyboardInterrupt:
-            # Si se presiona Ctrl+C este error sucede
-            pass
-
-        print("Listo!")
+        materias = [i.title() for i in pedirVariasOpcionesStr()]
 
         # Se escriben las materias en su respectivo archivo
         Path(materiasfilename).write_text("|".join(materias))
