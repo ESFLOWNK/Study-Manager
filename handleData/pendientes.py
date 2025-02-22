@@ -13,11 +13,8 @@ def verPendientes(data: dict):
     pendientes = data["pendientes"][mats[op]]
     print("\n".join(["- "+i for i in pendientes])+"\n")
 
-def crearPendientes(data: dict):
-    # Obtiene las materias con pendientes
-    mats = list(data["pendientes"].keys())
-
-    # Te pide que elijas una
+def crearPendientes(data: dict, mats: list[str]):
+    # Te pide que elijas una materia
     print("Seleccione la materia del pendiente")
     mostrarOpciones(mats, False)
     op = pedirOpcion(1,len(mats))-1
@@ -30,11 +27,8 @@ def crearPendientes(data: dict):
 
     print("") # Muestra un salto de linea
 
-def modificarPendientes(data: dict):
-    # Obtiene las materias con pendientes
-    mats = list(data["pendientes"].keys())
-
-    # Te pide que elijas una
+def modificarPendientes(data: dict, mats: list[str]):
+    # Te pide que elijas una materia
     print("Seleccione la materia del pendiente")
     mostrarOpciones(mats, False)
     op = pedirOpcion(1,len(mats))-1
@@ -51,11 +45,8 @@ def modificarPendientes(data: dict):
     # Modificar el viejo pendiente al nuevo
     data["pendientes"][mats[op]][penop] = pendiente
 
-def eliminarPendientes(data: dict):
-    # Obtiene todas las materias con pendientes
-    mats = list(data["pendientes"].keys())
-
-    # Te pide que elijas una
+def eliminarPendientes(data: dict, mats: list[str]):
+    # Te pide que elijas una materia
     mostrarOpciones(mats, False)
     print("Seleccione la materia del pendiente")
     op = pedirOpcion(1,len(mats))-1
@@ -69,7 +60,7 @@ def eliminarPendientes(data: dict):
     # Borra el pendiente
     _ = data["pendientes"][mats[op]].pop(penop)
 
-def manejarPendientes(data: dict):
+def manejarPendientes(data: dict, mats: list[str]):
     mostrarOpciones([
         "Ver pendientes",
         "Crear pendientes",
@@ -83,8 +74,8 @@ def manejarPendientes(data: dict):
     if op == 1:
         verPendientes(data)
     elif op == 2:
-        crearPendientes(data)
+        crearPendientes(data,mats)
     elif op == 3:
-        modificarPendientes(data)
+        modificarPendientes(data, mats)
     elif op == 4:
-        eliminarPendientes(data)
+        eliminarPendientes(data, mats)

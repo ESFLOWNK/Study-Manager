@@ -48,7 +48,7 @@ def opciones():
     op = pedirOpcion(1,4)
 
     if op == 1:
-        manejarPendientes(data)
+        manejarPendientes(data,materias)
         guardarDatos(datafilename,data)
     elif op == 2:
         manejarHorario(data)
