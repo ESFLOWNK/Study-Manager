@@ -9,6 +9,11 @@ def verPendientes(data: dict):
     mostrarOpciones(mats, False)
     op = pedirOpcion(1,len(mats))-1
 
+    if op == -2:
+        # Si no hay pendientes avisa de que no los hay
+        print("No hay ningun pendiente\n")
+        return
+
     # Busca los pendientes de la materia elegida y los muestra
     pendientes = data["pendientes"][mats[op]]
     print("\n".join(["- "+i for i in pendientes])+"\n")
@@ -18,6 +23,10 @@ def crearPendientes(data: dict, mats: list[str]):
     print("Seleccione la materia del pendiente")
     mostrarOpciones(mats, False)
     op = pedirOpcion(1,len(mats))-1
+
+    # Si la materia no esta inicializada, se inicializa
+    if not mats[op] in data["pendientes"]:
+        data["pendientes"][mats[op]] = []
 
     # Te pide que insertes el nuevo pendiente
     pendiente = pedirOpcionStr("Inserte el pendiente\n>> ")
@@ -59,6 +68,10 @@ def eliminarPendientes(data: dict, mats: list[str]):
 
     # Borra el pendiente
     _ = data["pendientes"][mats[op]].pop(penop)
+
+    # Si la materia no tiene ningun pendiente es borrada
+    if len(data["pendientes"][mats[op]]) == 0:
+        _ = data["pendientes"].pop(mats[op])
 
 def manejarPendientes(data: dict, mats: list[str]):
     mostrarOpciones([
