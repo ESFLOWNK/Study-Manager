@@ -30,6 +30,27 @@ def crearPendientes(data: dict):
 
     print("") # Muestra un salto de linea
 
+def modificarPendientes(data: dict):
+    # Obtiene las materias con pendientes
+    mats = list(data["pendientes"].keys())
+
+    # Te pide que elijas una
+    print("Seleccione la materia del pendiente")
+    mostrarOpciones(mats, False)
+    op = pedirOpcion(1,len(mats))-1
+
+    # Te pide que elijas un pendiente
+    pendientes = data["pendientes"][mats[op]]
+    print("Seleccione el pendiente")
+    mostrarOpciones(pendientes)
+    penop = pedirOpcion(1,len(pendientes))-1
+
+    # Te pide que insertes el nuevo pendiente
+    pendiente = pedirOpcionStr("Inserte el pendiente\n>> ")
+
+    # Modificar el viejo pendiente al nuevo
+    data["pendientes"][mats[op]][penop] = pendiente
+
 def eliminarPendientes(data: dict):
     # Obtiene todas las materias con pendientes
     mats = list(data["pendientes"].keys())
@@ -52,6 +73,7 @@ def manejarPendientes(data: dict):
     mostrarOpciones([
         "Ver pendientes",
         "Crear pendientes",
+        "Modificar pendientes",
         "Eliminar pendientes"
     ])
 
@@ -62,4 +84,6 @@ def manejarPendientes(data: dict):
     elif op == 2:
         crearPendientes(data)
     elif op == 3:
+        modificarPendientes(data)
+    elif op == 4:
         eliminarPendientes(data)
