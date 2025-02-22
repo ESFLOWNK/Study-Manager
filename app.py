@@ -56,6 +56,7 @@ def opciones():
     elif op == 4:
         return 1 # Devuelve 1 y el programa termina
 
+    guardarDatos(datafilename,data)
     return 0 # Devuelve 0
 
 if __name__ == "__main__":

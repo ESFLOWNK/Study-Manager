@@ -13,9 +13,11 @@ def pedirOpcion(desde: int,hasta: int) -> int:
 
 def pedirOpcionStr(text: str = ">> ") -> str:
     op = "" # Crea una variable que contiene las opciones ingresadas
-    while "|" in op or "." in op or "-" in op or op.strip() == "":
+    while "." in op or "-" in op or op.strip() == "":
         # Revisa que op no tenga caracteres especiales
         op = input(text)
+        if "." in op or "-" in op or op.strip() == "":
+            print("El texto contiene caracteres invalidos!")
 
     return op # Devuelve la opcion a manera de int
 
@@ -36,9 +38,10 @@ def pedirVariasOpcionesStr(text:str = ">> ") -> list[str]:
 
     try: # Pide texto hasta que se presiona Ctrl + C
         while True:
-            pedirOpcionStr(text)
+            op = pedirOpcionStr(text)
             ops.append(op)
     except KeyboardInterrupt:
+        print("") # Salto de linea
         pass
 
     return ops

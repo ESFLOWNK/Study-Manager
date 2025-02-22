@@ -4,9 +4,8 @@ def verHorario(data: dict):
     for i in data["horario"]: # Revisa cada semana
         print(f"{i}:")
         for j in data["horario"][i]: # Revisa las horas
-            print(f"\t{j}")
-
-    print("") # Salto de linea
+            print(f"    {j}")
+        print("") # Salto de linea
 
 def agregarSemana(data: dict):
     # Pide el dia de la semana
