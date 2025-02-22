@@ -49,14 +49,16 @@ def opciones():
 
     if op == 1:
         manejarPendientes(data)
+        guardarDatos(datafilename,data)
     elif op == 2:
         manejarHorario(data)
+        guardarDatos(datafilename,data)
     elif op == 3:
-        configurarMaterias(data)
+        configurarMaterias(materias)
+        Path(materiasfilename).write_text("|".join(materias))
     elif op == 4:
         return 1 # Devuelve 1 y el programa termina
 
-    guardarDatos(datafilename,data)
     return 0 # Devuelve 0
 
 if __name__ == "__main__":
@@ -73,3 +75,4 @@ if __name__ == "__main__":
             break # Si r es 1 entonces rompe el bucle y el programa termina
 
     guardarDatos(datafilename,data)
+    Path(materiasfilename).write_text("|".join(materias))
