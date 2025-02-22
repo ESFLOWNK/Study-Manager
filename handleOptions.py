@@ -1,6 +1,6 @@
 def pedirOpcion(desde: int,hasta: int) -> int:
     op = "" # Crea una variable que contiene las opciones ingresadas
-    if desde+hasta == 0: # Si desde y hasta son 0
+    if hasta == 0: # Si desde y hasta son 0
         return -1        # Devuelve -1
     while not op in [str(i) for i in range(desde,hasta+1)]:
         # Revisa que op sea digitos y que sea mayor que 0 o menor que 4

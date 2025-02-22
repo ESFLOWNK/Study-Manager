@@ -61,7 +61,7 @@ def opciones():
 if __name__ == "__main__":
     inicializar() # Si no esta del todo inicializado, se inicializa
 
-    materias = leerMaterias("Materias.txt") # Se leen las materias
+    materias = leerMaterias(materiasfilename) # Se leen las materias
     data = leerDatos(datafilename)
 
     while True: # Se crea un bucle infinito
