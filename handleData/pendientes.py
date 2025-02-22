@@ -77,7 +77,7 @@ def manejarPendientes(data: dict):
         "Eliminar pendientes"
     ])
 
-    op = pedirOpcion(1,3)
+    op = pedirOpcion(1,4)
     
     if op == 1:
         verPendientes(data)
