@@ -61,9 +61,9 @@ def opciones():
     if op == 1:
         manejarPendientes(data)
     elif op == 2:
-        manejarHorario()
+        manejarHorario(data)
     elif op == 3:
-        configurarMaterias()
+        configurarMaterias(data)
     elif op == 4:
         return 1 # Devuelve 1 y el programa termina
 
