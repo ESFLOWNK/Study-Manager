@@ -25,48 +25,46 @@ def verPendientes(data: dict):
     pendientes = data["pendientes"][mats[op]]
     print("\n".join(["- "+i for i in pendientes])+"\n")
 
-def crearPendientes(data: dict, mats: list[str]):
+def crearPendientes(data: dict):
     """
     Crea un pendiente nuevo.
 
     Parameters:
         data: son los datos guardados
-        mats: son las materias registradas
     """
 
     # Te pide que elijas una materia
     print("Seleccione la materia del pendiente")
-    mostrarOpciones(mats, False)
-    op = pedirOpcion(1,len(mats))-1
+    mostrarOpciones(data["materias"], False)
+    op = pedirOpcion(1,len(data["materias"]))-1
 
     # Si la materia no esta inicializada, se inicializa
-    if not mats[op] in data["pendientes"]:
-        data["pendientes"][mats[op]] = []
+    if not data["materias"][op] in data["pendientes"]:
+        data["pendientes"][data["materias"][op]] = []
 
     # Te pide que insertes el nuevo pendiente
     pendiente = pedirOpcionStr("Inserte el pendiente\n>> ")
 
     # Y agrega el nuevo pendiente
-    data["pendientes"][mats[op]].append(pendiente)
+    data["pendientes"][data["materias"][op]].append(pendiente)
 
     print("") # Muestra un salto de linea
 
-def modificarPendientes(data: dict, mats: list[str]):
+def modificarPendientes(data: dict):
     """
     Modifica un pendiente existente.
 
     Parameters:
         data: son los datos guardados
-        mats: son las materias registradas
     """
 
     # Te pide que elijas una materia
     print("Seleccione la materia del pendiente")
-    mostrarOpciones(mats, False)
-    op = pedirOpcion(1,len(mats))-1
+    mostrarOpciones(data["materias"], False)
+    op = pedirOpcion(1,len(data["materias"]))-1
 
     # Te pide que elijas un pendiente
-    pendientes = data["pendientes"][mats[op]]
+    pendientes = data["pendientes"][data["materias"][op]]
     print("Seleccione el pendiente")
     mostrarOpciones(pendientes)
     penop = pedirOpcion(1,len(pendientes))-1
@@ -75,36 +73,35 @@ def modificarPendientes(data: dict, mats: list[str]):
     pendiente = pedirOpcionStr("Inserte el pendiente\n>> ")
 
     # Modificar el viejo pendiente al nuevo
-    data["pendientes"][mats[op]][penop] = pendiente
+    data["pendientes"][data["materias"][op]][penop] = pendiente
 
-def eliminarPendientes(data: dict, mats: list[str]):
+def eliminarPendientes(data: dict):
     """
     Elimina un pendiente.
 
     Parameters:
         data: son los datos guardados
-        mats: son las materias registradas
     """
 
     # Te pide que elijas una materia
-    mostrarOpciones(mats, False)
+    mostrarOpciones(data["materias"], False)
     print("Seleccione la materia del pendiente")
-    op = pedirOpcion(1,len(mats))-1
+    op = pedirOpcion(1,len(data["materias"]))-1
 
     # Te pide que elijas un pendiente
-    pendientes = data["pendientes"][mats[op]]
+    pendientes = data["pendientes"][data["materias"][op]]
     print("Seleccione el pendiente")
     mostrarOpciones(pendientes)
     penop = pedirOpcion(1,len(pendientes))-1
 
     # Borra el pendiente
-    _ = data["pendientes"][mats[op]].pop(penop)
+    _ = data["pendientes"][data["materias"][op]].pop(penop)
 
     # Si la materia no tiene ningun pendiente es borrada
-    if len(data["pendientes"][mats[op]]) == 0:
-        _ = data["pendientes"].pop(mats[op])
+    if len(data["pendientes"][data["materias"][op]]) == 0:
+        _ = data["pendientes"].pop(data["materias"][op])
 
-def manejarPendientes(data: dict, mats: list[str]):
+def manejarPendientes(data: dict):
     """
     Muestra todas las opciones
     disponibles conforme al
@@ -112,7 +109,6 @@ def manejarPendientes(data: dict, mats: list[str]):
 
     Parameters:
         data: son los datos guardados
-        mats: son las materias registradas
     """
 
     # Muestra las opciones disponibles
@@ -129,8 +125,8 @@ def manejarPendientes(data: dict, mats: list[str]):
     if op == 1: # Si se eligio 1 se ven los pendientes
         verPendientes(data)
     elif op == 2: # Si se eligio 2 se crea un pendiente
-        crearPendientes(data,mats)
+        crearPendientes(data)
     elif op == 3: # Si se eligio 3 se modifica un pendiente
-        modificarPendientes(data, mats)
+        modificarPendientes(data)
     elif op == 4: # Si se eligio 4 se elimina un pendiente
-        eliminarPendientes(data, mats)
+        eliminarPendientes(data)

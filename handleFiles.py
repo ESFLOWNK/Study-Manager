@@ -16,12 +16,21 @@ def guardarDatos(filename: str,data: dict):
     for i in data:
         # Se escribe el nombre
         f.write(f"--{i}\r\n")
-        for j in data[i]:
-            # Se escriben sus categorias
-            f.write(f"-{j}\r\n")
-            for k in data[i][j]:
-                # Y se escriben sus datos
-                f.write(f"{k}\r\n")
+
+        # Si es un diccionario se trata como tal
+        if type(data[i]) == dict:
+            for j in data[i]:
+                # Se escriben sus categorias
+                f.write(f"-{j}\r\n")
+                for k in data[i][j]:
+                    # Y se escriben sus datos
+                    f.write(f"{k}\r\n")
+
+        # Si es una lista se guarda como tal
+        elif type(data) == list:
+            for j in data[i]:
+                # Se escriben los datos
+                f.write(f"{j}\r\n")
 
     # Finalmente se cierra el archivo
     f.close()
@@ -56,6 +65,7 @@ def leerDatos(filename: str) -> dict:
                 # Establece que tipo de dato es
                 data[line[2:]] = {}
                 fatherScope = line[2:]
+                childScope = ""
 
             elif line.startswith("-"):
                 # Si es una categoria
@@ -69,29 +79,17 @@ def leerDatos(filename: str) -> dict:
             else:
                 # Si es un dato
                 # Lo guarda en el ultimo tipo de categoria
-                data[fatherScope][childScope].append(line)
+                if not childScope == "":
+                    data[fatherScope][childScope].append(line)
+                else:
+                    if type(data[fatherScope]) == dict:
+                        data[fatherScope] = []
+                    data[fatherScope].append(line)
     except FileNotFoundError:
         # Si no se haya el archivo devuelve datos por defecto
         f.close()
-        return {"pendientes":{},"horario":{}}
+        return {"pendientes":{},"horario":{},"materias":[]}
 
     # Cierra el archivo y devuelve los datos leidos
     f.close()
     return data
-
-
-def leerMaterias(filename: str) -> list[str]:
-    """
-    Lee las materias.
-
-    Parameters:
-        filename: El archivo donde se registraron las materias
-    """
-    m = []
-
-    f = open(filename,"r")
-    # Se lee el archivo, y el contenido se corta por los |, por ejemplo 1|2|3 = 1, 2, 3
-    m = f.readline().split("|")
-    f.close()
-    
-    return m # Devuelve m la cual tiene las materias

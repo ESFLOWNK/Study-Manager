@@ -13,30 +13,23 @@ from handleData.horario import *
 from handleData.materias import *
 
 # Variables de uso comun
-data = {"pendientes":{},"horario":{}}
-materias = []
+data = {"pendientes":{},"horario":{},"materias":[]}
 
 # Parametros
-materiasfilename = "materias.txt"
 datafilename = "data"
 
 def inicializar():
     """ Si el programa no ha sido configurado se inicia la configuracion """
 
-    if not Path(materiasfilename).exists():
+    if not Path(datafilename).exists():
         # Si el archivo de las materias no existe, se crea
 
         print("¿Que materias son impartidas en tu institucion?")
         print("Presiona Ctrl+C cuando ya no quede ninguna")
 
         # Pide materias, y las guarda como un titulo, con mayuscula al principio
-        materias = [i.title() for i in pedirVariasOpcionesStr()]
-
-        # Se escriben las materias en su respectivo archivo
-        Path(materiasfilename).write_text("|".join(materias))
+        data["materias"] = [i.title() for i in pedirVariasOpcionesStr()]
     
-    if not Path(datafilename).exists():
-        # Se crea el archivo de los datos si no existe
         guardarDatos(datafilename,data)
 
 def opciones():
@@ -59,18 +52,16 @@ def opciones():
 
     if op == 1: # Si la opcion es 1
         # Accede a manejar pendiente y guarda los datos
-        manejarPendientes(data,materias)
+        manejarPendientes(data)
         guardarDatos(datafilename,data)
     elif op == 2: # Si la opcion es 2 y guarda los datos
         # Accede a manejar el horario
         manejarHorario(data)
         guardarDatos(datafilename,data)
     elif op == 3: # Si la opcion es 3
-        # Accede a configurar las materias
-        configurarMaterias(materias)
-        # Y lo guarda es un archivo, dividiendo las
-        # materias por este caracter: '|'
-        Path(materiasfilename).write_text("|".join(materias))
+        # Accede a configurar las materias y guarda los datos
+        configurarMaterias(data)
+        guardarDatos(datafilename,data)
     elif op == 4: # Si la opcion es 4
         return 1 # Devuelve 1 y el programa termina
 
@@ -79,7 +70,6 @@ def opciones():
 if __name__ == "__main__": # Lo primero en ejecutarse
     inicializar() # Si no esta del todo inicializado, se inicializa
 
-    materias = leerMaterias(materiasfilename) # Se leen las materias
     data = leerDatos(datafilename) # Se leen los datos guardados
 
     while True: # Se crea un bucle infinito
@@ -89,6 +79,5 @@ if __name__ == "__main__": # Lo primero en ejecutarse
         if r == 1:
             break # Si r es 1 entonces rompe el bucle y el programa termina
 
-    # Guarda los datos y las materias
+    # Guarda los datos
     guardarDatos(datafilename,data)
-    Path(materiasfilename).write_text("|".join(materias))

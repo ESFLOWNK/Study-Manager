@@ -5,75 +5,74 @@ Este es el modulo que controla el manejo de materias
 # Importa la libreria de opciones
 from handleOptions import mostrarOpciones, pedirOpcion, pedirOpcionStr
 
-def verMaterias(materias: list[str]):
+def verMaterias(data: dict):
     """
     Muestra las materias
     
     Parameters:
-        materias: La lista de materias que se van a imprimir
+        data: contienene los datos de las materias a mostrarse
     """
 
     # Muestra las materias
-    print("\n".join([f"- {i}" for i in materias]))
+    print("\n".join([f"- {i}" for i in data["materias"]]))
 
-def agregarMateria(materias: list[str]):
+def agregarMateria(data: dict):
     """
     Agrega una materia a la lista
 
     Parameters:
-        materias: La lista de materias donde se va a agregar
-                  la nueva materia
+        data: contiene los datos registrados
     """
 
     # Pide el nombre de la materia
     mat = pedirOpcionStr("Inserte el nombre de la materia\n>> ")
 
     # Agrega la materia
-    materias.append(mat.title())
+    data["materias"].append(mat.title())
 
-def modificarMateria(materias: list[str]):
+def modificarMateria(data: dict):
     """
     Modifica el nombre de una materia
 
     Parameters:
-        materias: Es la lista de materias registradas 
+        data: Son los datos registrados 
     """
 
     # Muestra las materias
-    mostrarOpciones(materias)
+    mostrarOpciones(data["materias"])
 
     # Pide que elijas una materia
-    op = pedirOpcion(1,len(materias))-1
+    op = pedirOpcion(1,len(data["materias"]))-1
 
     # Pide el nuevo nombre de la materia
     mat = pedirOpcionStr("Inserte la materia\n>> ")
 
     # Realiza la modificacion
-    materias[op] = mat
+    data["materias"][op] = mat
 
-def borrarMateria(materias: list[str]):
+def borrarMateria(data: dict):
     """
     Borra una materia de la lista de materias
 
     Parameters:
-        materias: Es la lista de materias registradas 
+        data: Son los datos registrados 
     """
 
     # Pide que se elija una materia
     print("Eliga la materia a borrar:")
-    mostrarOpciones(materias, False)
-    op = pedirOpcion(1,len(materias))-1
+    mostrarOpciones(data["materias"], False)
+    op = pedirOpcion(1,len(data["materias"]))-1
 
     # Se borra la materia
-    materias.pop(op)
+    data["materias"].pop(op)
 
-def configurarMaterias(materias: list[str]):
+def configurarMaterias(data: dict):
     """
     Es la funcion la cual muestra las
     opciones disponibles al usuario.
 
     Parameters:
-        materias: Es la lista de materias registradas 
+        data: Son los datos registrados 
     """
 
     mostrarOpciones([
@@ -86,11 +85,11 @@ def configurarMaterias(materias: list[str]):
 
     op = pedirOpcion(1,5)
 
-    if op == 1:
-        verMaterias(materias)
-    elif op == 2:
-        agregarMateria(materias)
-    elif op == 3:
-        modificarMateria(materias)
-    elif op == 4:
-        borrarMateria(materias)
+    if op == 1: # Si se elige 1 se ven las materias
+        verMaterias(data)
+    elif op == 2: # Si se elige 2 se agrega una materia
+        agregarMateria(data)
+    elif op == 3: # Si se elige 3 se modifica una materia
+        modificarMateria(data)
+    elif op == 4: # Si se elige 4 se borra una materia
+        borrarMateria(data)
