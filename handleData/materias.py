@@ -1,10 +1,30 @@
+"""
+Este es el modulo que controla el manejo de materias
+"""
+
+# Importa la libreria de opciones
 from handleOptions import mostrarOpciones, pedirOpcion, pedirOpcionStr
 
 def verMaterias(materias: list[str]):
+    """
+    Muestra las materias
+    
+    Parameters:
+        materias: La lista de materias que se van a imprimir
+    """
+
     # Muestra las materias
     print("\n".join([f"- {i}" for i in materias]))
 
 def agregarMateria(materias: list[str]):
+    """
+    Agrega una materia a la lista
+
+    Parameters:
+        materias: La lista de materias donde se va a agregar
+                  la nueva materia
+    """
+
     # Pide el nombre de la materia
     mat = pedirOpcionStr("Inserte el nombre de la materia\n>> ")
 
@@ -12,6 +32,13 @@ def agregarMateria(materias: list[str]):
     materias.append(mat.title())
 
 def modificarMateria(materias: list[str]):
+    """
+    Modifica el nombre de una materia
+
+    Parameters:
+        materias: Es la lista de materias registradas 
+    """
+
     # Muestra las materias
     mostrarOpciones(materias)
 
@@ -25,6 +52,13 @@ def modificarMateria(materias: list[str]):
     materias[op] = mat
 
 def borrarMateria(materias: list[str]):
+    """
+    Borra una materia de la lista de materias
+
+    Parameters:
+        materias: Es la lista de materias registradas 
+    """
+
     # Pide que se elija una materia
     print("Eliga la materia a borrar:")
     mostrarOpciones(materias, False)
@@ -34,6 +68,14 @@ def borrarMateria(materias: list[str]):
     materias.pop(op)
 
 def configurarMaterias(materias: list[str]):
+    """
+    Es la funcion la cual muestra las
+    opciones disponibles al usuario.
+
+    Parameters:
+        materias: Es la lista de materias registradas 
+    """
+
     mostrarOpciones([
         "Ver materias",
         "Agregar materia",

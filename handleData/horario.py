@@ -1,6 +1,13 @@
 from handleOptions import pedirOpcion, mostrarOpciones, pedirOpcionStr, pedirVariasOpcionesStr
 
 def verHorario(data: dict):
+    """
+    Muestra el horario guardado
+
+    Parameters:
+        data: son los datos guardados
+    """
+
     for i in data["horario"]: # Revisa cada semana
         print(f"{i}:")
         for j in data["horario"][i]: # Revisa las horas
@@ -8,6 +15,18 @@ def verHorario(data: dict):
         print("") # Salto de linea
 
 def agregarSemana(data: dict):
+    """
+    Agrega un dia de la semana
+    al horario y sus materias
+    correspondientes.
+
+    Tambien puede modificar un
+    dia de la semana como
+    consecuencia del uso de dicts.
+
+    Parameters:
+        data: son los datos guardados
+    """
     # Pide el dia de la semana
     dia = pedirOpcionStr("Inserte el dia de la semana\n>> ")
 
@@ -23,6 +42,14 @@ def agregarSemana(data: dict):
     data["horario"][dia] = horas
 
 def borrarSemana(data: dict):
+    """
+    Borra un dia de la semana
+    del horario
+
+    Parameters:
+        data: son los datos guardados
+    """
+        
     # Pide el dia de la semana
     dia = pedirOpcionStr("Inserte el dia de la semana\n>> ")
 
@@ -30,6 +57,14 @@ def borrarSemana(data: dict):
     _ = data["horario"].pop(dia)
 
 def manejarHorario(data: dict):
+    """
+    Muestra el horario guardado
+
+    Parameters:
+        data: son los datos guardados
+    """
+
+    # Muestra las opciones
     mostrarOpciones([
         "Ver horario",
         "Agregar o modificar semana",
@@ -39,9 +74,9 @@ def manejarHorario(data: dict):
 
     op = pedirOpcion(1,4)
 
-    if op == 1:
+    if op == 1: # Si se eligio 1 se ve el horario
         verHorario(data)
-    elif op == 2:
+    elif op == 2: # Si se eligio 2 se agrega un dia de la semana
         agregarSemana(data)
-    elif op == 3:
+    elif op == 3: # si se eligio 3 se borra un dia de la semana
         borrarSemana(data)

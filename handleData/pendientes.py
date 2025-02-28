@@ -1,6 +1,13 @@
 from handleOptions import pedirOpcion, mostrarOpciones, pedirOpcionStr
 
 def verPendientes(data: dict):
+    """
+    Muestra los pendientes guardados.
+
+    Parameters:
+        data: son los datos guardados
+    """
+
     # Obtiene todas las materias con pendientes
     mats = list(data["pendientes"].keys())
 
@@ -19,6 +26,14 @@ def verPendientes(data: dict):
     print("\n".join(["- "+i for i in pendientes])+"\n")
 
 def crearPendientes(data: dict, mats: list[str]):
+    """
+    Crea un pendiente nuevo.
+
+    Parameters:
+        data: son los datos guardados
+        mats: son las materias registradas
+    """
+
     # Te pide que elijas una materia
     print("Seleccione la materia del pendiente")
     mostrarOpciones(mats, False)
@@ -37,6 +52,14 @@ def crearPendientes(data: dict, mats: list[str]):
     print("") # Muestra un salto de linea
 
 def modificarPendientes(data: dict, mats: list[str]):
+    """
+    Modifica un pendiente existente.
+
+    Parameters:
+        data: son los datos guardados
+        mats: son las materias registradas
+    """
+
     # Te pide que elijas una materia
     print("Seleccione la materia del pendiente")
     mostrarOpciones(mats, False)
@@ -55,6 +78,14 @@ def modificarPendientes(data: dict, mats: list[str]):
     data["pendientes"][mats[op]][penop] = pendiente
 
 def eliminarPendientes(data: dict, mats: list[str]):
+    """
+    Elimina un pendiente.
+
+    Parameters:
+        data: son los datos guardados
+        mats: son las materias registradas
+    """
+
     # Te pide que elijas una materia
     mostrarOpciones(mats, False)
     print("Seleccione la materia del pendiente")
@@ -74,6 +105,17 @@ def eliminarPendientes(data: dict, mats: list[str]):
         _ = data["pendientes"].pop(mats[op])
 
 def manejarPendientes(data: dict, mats: list[str]):
+    """
+    Muestra todas las opciones
+    disponibles conforme al
+    manejo de pendientes.
+
+    Parameters:
+        data: son los datos guardados
+        mats: son las materias registradas
+    """
+
+    # Muestra las opciones disponibles
     mostrarOpciones([
         "Ver pendientes",
         "Crear pendientes",
@@ -84,11 +126,11 @@ def manejarPendientes(data: dict, mats: list[str]):
 
     op = pedirOpcion(1,5)
     
-    if op == 1:
+    if op == 1: # Si se eligio 1 se ven los pendientes
         verPendientes(data)
-    elif op == 2:
+    elif op == 2: # Si se eligio 2 se crea un pendiente
         crearPendientes(data,mats)
-    elif op == 3:
+    elif op == 3: # Si se eligio 3 se modifica un pendiente
         modificarPendientes(data, mats)
-    elif op == 4:
+    elif op == 4: # Si se eligio 4 se elimina un pendiente
         eliminarPendientes(data, mats)

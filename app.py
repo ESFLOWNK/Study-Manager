@@ -5,6 +5,7 @@ manejar las tareas y actividades escolares.
 
 # Importar la libreria de archivos
 from pathlib import Path
+# Importar las librerias propias
 from handleOptions import *
 from handleFiles import *
 from handleData.pendientes import manejarPendientes
@@ -28,6 +29,7 @@ def inicializar():
         print("¿Que materias son impartidas en tu institucion?")
         print("Presiona Ctrl+C cuando ya no quede ninguna")
 
+        # Pide materias, y las guarda como un titulo, con mayuscula al principio
         materias = [i.title() for i in pedirVariasOpcionesStr()]
 
         # Se escriben las materias en su respectivo archivo
@@ -38,6 +40,13 @@ def inicializar():
         guardarDatos(datafilename,data)
 
 def opciones():
+    """
+    Ofrece las opciones al usuario
+    llama a una funcion u otra segun
+    la opcion ingresada por el usuario
+    """
+
+    # Muestra las opciones
     mostrarOpciones([
         "Manejar pendientes",
         "Manejar el horario",
@@ -45,27 +54,33 @@ def opciones():
         "Salir"
     ])
     
+    # Pide una opcion
     op = pedirOpcion(1,4)
 
-    if op == 1:
+    if op == 1: # Si la opcion es 1
+        # Accede a manejar pendiente y guarda los datos
         manejarPendientes(data,materias)
         guardarDatos(datafilename,data)
-    elif op == 2:
+    elif op == 2: # Si la opcion es 2 y guarda los datos
+        # Accede a manejar el horario
         manejarHorario(data)
         guardarDatos(datafilename,data)
-    elif op == 3:
+    elif op == 3: # Si la opcion es 3
+        # Accede a configurar las materias
         configurarMaterias(materias)
+        # Y lo guarda es un archivo, dividiendo las
+        # materias por este caracter: '|'
         Path(materiasfilename).write_text("|".join(materias))
-    elif op == 4:
+    elif op == 4: # Si la opcion es 4
         return 1 # Devuelve 1 y el programa termina
 
     return 0 # Devuelve 0
 
-if __name__ == "__main__":
+if __name__ == "__main__": # Lo primero en ejecutarse
     inicializar() # Si no esta del todo inicializado, se inicializa
 
     materias = leerMaterias(materiasfilename) # Se leen las materias
-    data = leerDatos(datafilename)
+    data = leerDatos(datafilename) # Se leen los datos guardados
 
     while True: # Se crea un bucle infinito
 
@@ -74,5 +89,6 @@ if __name__ == "__main__":
         if r == 1:
             break # Si r es 1 entonces rompe el bucle y el programa termina
 
+    # Guarda los datos y las materias
     guardarDatos(datafilename,data)
     Path(materiasfilename).write_text("|".join(materias))

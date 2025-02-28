@@ -1,4 +1,18 @@
 def pedirOpcion(desde: int,hasta: int) -> int:
+    """
+    Pide al usuario ingresar un numero
+    entre `desde` y `hasta`.
+
+    Continuara pidiendelo mientras se
+    den datos incorrectos.
+
+    Parameters:
+        desde: es el numero minimo (inclusive)
+               que se puede ingresar
+        hasta: es el numero maximo (inclusive)
+               que se puede ingresar
+    """
+
     op = "" # Crea una variable que contiene las opciones ingresadas
     if hasta == 0: # Si desde y hasta son 0
         return -1        # Devuelve -1
@@ -12,6 +26,15 @@ def pedirOpcion(desde: int,hasta: int) -> int:
 
 
 def pedirOpcionStr(text: str = ">> ") -> str:
+    """
+    Pide un texto, se volvera a pedir
+    mientras se ingresen datos con
+    caracteres invalidos.
+
+    Parameters:
+        text: Es el texto mostrado antes
+              de pedir texto al usuario
+    """
     op = "" # Crea una variable que contiene las opciones ingresadas
     while "." in op or "-" in op or op.strip() == "":
         # Revisa que op no tenga caracteres especiales
@@ -23,6 +46,18 @@ def pedirOpcionStr(text: str = ">> ") -> str:
 
 
 def mostrarOpciones(opciones: list[str], header = True):
+    """
+    Muestra una lista de opciones de
+    manera enumerada.
+
+    Parameters:
+        opciones: Es la lista de opciones
+                  que van a ser mostradas
+        header: Si es verdadero mostrara
+                la cabezera antes de
+                mostrar las opciones
+    """
+
     if header: 
         print("Opciones:\n")
 
@@ -34,6 +69,16 @@ def mostrarOpciones(opciones: list[str], header = True):
     print("") # Hace un salto de linea
 
 def pedirVariasOpcionesStr(text:str = ">> ") -> list[str]:
+    """
+    Pide texto al usuario hasta que
+    se presione la combinacion de
+    teclas `Ctrl + C`
+
+    Parameters:
+        text: Es el texto mostrado antes
+              de pedir texto al usuario
+    """
+
     ops = [] # Crea la lista de textos
     op = "" # Crea una variable temporal para guardar texto
 
@@ -42,6 +87,7 @@ def pedirVariasOpcionesStr(text:str = ">> ") -> list[str]:
             op = pedirOpcionStr(text)
             ops.append(op)
     except KeyboardInterrupt:
+        # Si se presiona Ctrl + C se entrara aqui
         print("") # Salto de linea
         pass
 
