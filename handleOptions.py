@@ -15,12 +15,14 @@ def pedirOpcion(desde: int,hasta: int) -> int:
 
     op = "" # Crea una variable que contiene las opciones ingresadas
     if hasta == 0: # Si desde y hasta son 0
-        return -1        # Devuelve -1
-    while not op in [str(i) for i in range(desde,hasta+1)]:
+        return -1  # Devuelve -1
+    while not op.isdigit() and int(op) >= desde and int(op) <= hasta:
         # Revisa que op sea digitos y que sea mayor que 0 o menor que 4
         # De no ser asi se repite el proceso
 
         op = input(">> ")
+        if not op.isdigit() and int(op) >= desde and int(op) <= hasta:
+            print("Insertaste un valor incorrecto")
 
     return int(op) # Devuelve la opcion a manera de int
 
@@ -84,7 +86,7 @@ def pedirVariasOpcionesStr(text:str = ">> ") -> list[str]:
 
     try: # Pide texto hasta que se presiona Ctrl + C
         while True:
-            op = pedirOpcionStr(text)
+            op = pedirOpcion(text)
             ops.append(op)
     except KeyboardInterrupt:
         # Si se presiona Ctrl + C se entrara aqui

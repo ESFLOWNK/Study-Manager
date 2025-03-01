@@ -43,6 +43,9 @@ def modificarMateria(data: dict):
 
     # Pide que elijas una materia
     op = pedirOpcion(1,len(data["materias"]))-1
+    if op == -1:
+        print("No hay ninguna materia resgistrada!")
+        return
 
     # Pide el nuevo nombre de la materia
     mat = pedirOpcionStr("Inserte la materia\n>> ")
@@ -62,6 +65,9 @@ def borrarMateria(data: dict):
     print("Eliga la materia a borrar:")
     mostrarOpciones(data["materias"], False)
     op = pedirOpcion(1,len(data["materias"]))-1
+    if op == -1:
+        print("No hay ninguna materia resgistrada!")
+        return
 
     # Se borra la materia
     data["materias"].pop(op)

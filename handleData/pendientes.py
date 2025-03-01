@@ -17,8 +17,8 @@ def verPendientes(data: dict):
     op = pedirOpcion(1,len(mats))-1
 
     if op == -2:
-        # Si no hay pendientes avisa de que no los hay
-        print("No hay ningun pendiente\n")
+        # Avisa si no hay materias registradas
+        print("No hay ninguna materia registrada!")
         return
 
     # Busca los pendientes de la materia elegida y los muestra
@@ -37,6 +37,11 @@ def crearPendientes(data: dict):
     print("Seleccione la materia del pendiente")
     mostrarOpciones(data["materias"], False)
     op = pedirOpcion(1,len(data["materias"]))-1
+
+    if op == -2:
+        # Avisa si no hay materias registradas
+        print("No hay ninguna materia resgistrada!")
+        return
 
     # Si la materia no esta inicializada, se inicializa
     if not data["materias"][op] in data["pendientes"]:
@@ -63,11 +68,21 @@ def modificarPendientes(data: dict):
     mostrarOpciones(data["materias"], False)
     op = pedirOpcion(1,len(data["materias"]))-1
 
+    if op == -2:
+        # Avisa si no hay materias registradas
+        print("No hay ninguna materia resgistrada!")
+        return
+
     # Te pide que elijas un pendiente
     pendientes = data["pendientes"][data["materias"][op]]
     print("Seleccione el pendiente")
     mostrarOpciones(pendientes)
     penop = pedirOpcion(1,len(pendientes))-1
+
+    if penop == -2:
+        # Avisa si no hay pendientes registrados
+        print("No hay ningun pendiente resgistrado!")
+        return
 
     # Te pide que insertes el nuevo pendiente
     pendiente = pedirOpcionStr("Inserte el pendiente\n>> ")
@@ -88,11 +103,21 @@ def eliminarPendientes(data: dict):
     print("Seleccione la materia del pendiente")
     op = pedirOpcion(1,len(data["materias"]))-1
 
+    if op == -2:
+        # Avisa si no hay materias registradas
+        print("No hay ninguna materia resgistrada!")
+        return
+
     # Te pide que elijas un pendiente
     pendientes = data["pendientes"][data["materias"][op]]
     print("Seleccione el pendiente")
     mostrarOpciones(pendientes)
     penop = pedirOpcion(1,len(pendientes))-1
+
+    if op == -2:
+        # Avisa si no hay pendientes registrados
+        print("No hay ningun pendiente resgistrado!")
+        return
 
     # Borra el pendiente
     _ = data["pendientes"][data["materias"][op]].pop(penop)
