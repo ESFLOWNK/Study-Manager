@@ -54,7 +54,7 @@ def modificarSemana(data: dict[str,dict[str,list] | list]):
     """
 
     # Pide un dia de la semana
-    mostrarOpciones(data["horario"].keys())
+    mostrarOpciones(list(data["horario"].keys()))
 
     op = pedirOpcion(1,len(data["horario"]))-1
     if op == -2:
@@ -80,7 +80,7 @@ def borrarSemana(data: dict[str,dict]):
     """
         
     # Pide el dia de la semana
-    mostrarOpciones(data["horario"].keys())
+    mostrarOpciones(list(data["horario"].keys()))
 
     op = pedirOpcion(1,len(data["horario"]))-1
     if op == -2:
