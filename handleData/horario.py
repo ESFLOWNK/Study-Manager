@@ -30,6 +30,10 @@ def agregarSemana(data: dict):
     # Pide el dia de la semana
     dia = pedirOpcionStr("Inserte el dia de la semana\n>> ")
 
+    if dia in data["horario"]:
+        print("Este dia de la semana ya sido registrado!")
+        return
+
     print("Inserte hora y materia por bloque")
     print("Presione Ctrl+C cuando este listo")
 
@@ -97,7 +101,8 @@ def manejarHorario(data: dict):
     # Muestra las opciones
     mostrarOpciones([
         "Ver horario",
-        "Agregar o modificar semana",
+        "Agregar semana",
+        "Modificar semana",
         "Borrar semana",
         "Cancelar"
     ])
