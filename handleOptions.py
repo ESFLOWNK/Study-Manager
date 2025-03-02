@@ -86,7 +86,7 @@ def pedirVariasOpcionesStr(text:str = ">> ") -> list[str]:
 
     try: # Pide texto hasta que se presiona Ctrl + C
         while True:
-            op = pedirOpcion(text)
+            op = pedirOpcionStr(text)
             ops.append(op)
     except KeyboardInterrupt:
         # Si se presiona Ctrl + C se entrara aqui
