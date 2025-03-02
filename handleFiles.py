@@ -27,7 +27,7 @@ def guardarDatos(filename: str,data: dict):
                     f.write(f"{k}\r\n")
 
         # Si es una lista se guarda como tal
-        elif type(data) == list:
+        elif type(data[i]) == list:
             for j in data[i]:
                 # Se escriben los datos
                 f.write(f"{j}\r\n")
