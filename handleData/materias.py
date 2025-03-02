@@ -16,7 +16,7 @@ def verMaterias(data: dict):
     # Muestra las materias
     print("\n".join([f"- {i}" for i in data["materias"]]))
 
-def agregarMateria(data: dict):
+def agregarMateria(data: dict[str,dict[list] | list]):
     """
     Agrega una materia a la lista
 
